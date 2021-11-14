@@ -208,15 +208,15 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
-                app:layout_constraintBottom_toBottomOf="@+id/editText"
+                app:layout_constraintBottom_toBottomOf="@+id/et_chat_main"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/editText"
+                app:layout_constraintTop_toTopOf="@+id/et_chat_main"
                 app:roundPercent="1"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/et_chat_main"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="8dp"
@@ -239,9 +239,9 @@
                 android:layout_marginEnd="10dp"
                 android:background="@null"
                 android:src="@drawable/ic_round_send_24"
-                app:layout_constraintBottom_toBottomOf="@+id/editText"
-                app:layout_constraintEnd_toEndOf="@+id/editText"
-                app:layout_constraintTop_toTopOf="@+id/editText" />
+                app:layout_constraintBottom_toBottomOf="@+id/et_chat_main"
+                app:layout_constraintEnd_toEndOf="@+id/et_chat_main"
+                app:layout_constraintTop_toTopOf="@+id/et_chat_main" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

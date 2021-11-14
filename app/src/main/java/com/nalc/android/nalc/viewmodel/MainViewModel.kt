@@ -10,4 +10,8 @@ class MainViewModel(user: UserModel?) : ViewModel() {
         user?.let { value = user }
     }
     val user: LiveData<UserModel> = mUser
+
+    fun setUser(user: UserModel) {
+        mUser.value = user
+    }
 }

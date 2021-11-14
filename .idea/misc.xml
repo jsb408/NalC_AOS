@@ -5,8 +5,13 @@
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.335" />
         <entry key="app/src/main/res/drawable/background_bubble_main.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/background_button_radius.xml" value="0.16927083333333334" />
+        <entry key="app/src/main/res/drawable/background_button_radius_border.xml" value="0.16927083333333334" />
         <entry key="app/src/main/res/drawable/background_edittext.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic_login_apple.xml" value="0.16927083333333334" />
+        <entry key="app/src/main/res/drawable/ic_login_google.xml" value="0.16927083333333334" />
         <entry key="app/src/main/res/drawable/ic_outline_wb_sunny_24.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/item_bubble_main.xml" value="0.1" />

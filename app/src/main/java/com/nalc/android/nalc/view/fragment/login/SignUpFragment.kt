@@ -8,16 +8,23 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEachIndexed
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.nalc.android.nalc.databinding.FragmentSignUpBinding
 import com.nalc.android.nalc.view.custom.BodyTypeButton
+import com.nalc.android.nalc.viewmodel.LoginViewModel
 import com.nalc.android.nalc.viewmodel.SignUpViewModel
+import com.nalc.android.nalc.viewmodel.factory.SignUpViewModelFactory
 
 class SignUpFragment : Fragment() {
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModels<SignUpViewModel>()
+    private val loginViewModel by activityViewModels<LoginViewModel>()
+    private val viewModel by viewModels<SignUpViewModel> { SignUpViewModelFactory(arguments.userUid) }
+
+    private val arguments by navArgs<SignUpFragmentArgs>()
 
     private val registerPermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
         if (!it.containsValue(false)) {
@@ -35,6 +42,7 @@ class SignUpFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
 
+        bindViewModel()
         setView()
 
         return binding.root
@@ -46,6 +54,12 @@ class SignUpFragment : Fragment() {
     }
     // endregion
 
+    private fun bindViewModel() {
+        viewModel.createdUserModel.observe(viewLifecycleOwner) {
+            loginViewModel.setUser(it)
+        }
+    }
+
     private fun setView() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -53,6 +67,7 @@ class SignUpFragment : Fragment() {
         setToolbar()
         setProfileImageButton()
         setBodyTypeButtons()
+        setSubmitButton()
     }
 
     // region setView
@@ -90,6 +105,12 @@ class SignUpFragment : Fragment() {
             (button as? BodyTypeButton)?.setOnClickListener {
                 viewModel.signUpUser.value!!.setSweat(index)
             }
+        }
+    }
+
+    private fun setSubmitButton() {
+        binding.btnSubmitSignUp.setOnClickListener {
+            viewModel.registerMember()
         }
     }
     // endregion

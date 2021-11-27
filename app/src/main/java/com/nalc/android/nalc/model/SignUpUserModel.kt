@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.databinding.BaseObservable
 
 data class SignUpUserModel(
+    val uid: String,
     var nickname: String = "",
     var sweat: Int? = null,
     var temperature: Int? = null,
@@ -25,4 +26,12 @@ data class SignUpUserModel(
         this.profile = uri
         notifyChange()
     }
+
+    fun toUserModel(profile: String): UserModel = UserModel(
+        uid = uid,
+        nickname = nickname,
+        sweat = sweat!!,
+        temperature = temperature!!,
+        profile = profile
+    )
 }

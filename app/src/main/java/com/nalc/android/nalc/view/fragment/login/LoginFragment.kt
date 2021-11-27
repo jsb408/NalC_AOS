@@ -104,7 +104,7 @@ class LoginFragment : Fragment() {
             .document(userUid ?: "").get().addOnSuccessListener {
                 val userModel = it.toObject(UserModel::class.java).apply { this?.uid = it.id }
                 if (userModel == null) {
-                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment())
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpFragment(userUid ?: ""))
                 } else {
                     loginViewModel.setUser(userModel)
                 }

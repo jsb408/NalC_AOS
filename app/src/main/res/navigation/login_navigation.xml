@@ -22,5 +22,9 @@
         android:id="@+id/signUpFragment"
         android:name="com.nalc.android.nalc.view.fragment.login.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up" >
+        <argument
+            android:name="userUid"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.fragment.login.LoginFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fontFamily="@font/jalnan"
+            android:gravity="center"
+            android:text="날씨어때."
+            android:textColor="@color/main_red"
+            android:textSize="60sp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_google_login"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_google_login"
+            style="@style/BottomButton.Login"
+            android:background="@drawable/background_button_radius_border"
+            android:drawableStart="@drawable/ic_login_google"
+            android:text="Google 계정으로 로그인"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toTopOf="@+id/btn_apple_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_apple_login"
+            style="@style/BottomButton.Login"
+            android:backgroundTint="@android:color/black"
+            android:drawableStart="@drawable/ic_login_apple"
+            android:text="Apple 계정으로 로그인"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

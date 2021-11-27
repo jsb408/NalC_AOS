@@ -8,7 +8,7 @@ import com.nalc.android.nalc.R
 import com.nalc.android.nalc.databinding.ViewEmojiButtonBinding
 
 class EmojiButton(context: Context, attrs: AttributeSet) : FrameLayout(context, attrs) {
-    private var binding: ViewEmojiButtonBinding = ViewEmojiButtonBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding = ViewEmojiButtonBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
         // attrs.xml에서 View의 속성 목록을 가져온다.

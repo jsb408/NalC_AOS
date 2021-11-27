@@ -36,7 +36,7 @@ class SplashActivity : AppCompatActivity() {
             Firebase.firestore.collection(FirestoreCollection.USER.collectionName)
                 .document(it).get()
                 .addOnSuccessListener { user ->
-                    val userModel = user.toObject(UserModel::class.java)
+                    val userModel = user.toObject(UserModel::class.java).apply { this?.uid = user.id}
                     goToMainActivity(userModel)
                 }
                 .addOnFailureListener {

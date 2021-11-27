@@ -5,4 +5,9 @@
         <attr name="title" format="string|reference"/>
         <attr name="count" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="BodyTypeButton">
+        <attr name="emoji"/>
+        <attr name="title"/>
+    </declare-styleable>
 </resources>

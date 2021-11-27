@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.fragment.login.SignUpFragment">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.nalc.android.nalc.viewmodel.SignUpViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/iv_profile_sign_up"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="48dp"
+            android:background="@color/gray_02"
+            android:src="@drawable/ic_round_person_24"
+            app:setImage="@{viewModel.signUpUser.profile}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:roundPercent="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton"
+            style="@style/BottomButton.Default"
+            android:text="가입하기"
+            android:enabled="@{viewModel.signUpUser.valid}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile_sign_up">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="닉네임"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.signUpUser.nickname}"
+                android:onTextChanged="@{() -> viewModel.signUpUser.notifyChange()}"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+            app:layout_constraintVertical_bias="0.75">
+
+            <LinearLayout
+                android:id="@+id/ll_temperature_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.nalc.android.nalc.view.custom.BodyTypeButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:isActivated="@{viewModel.signUpUser.temperature != null &amp;&amp; viewModel.signUpUser.temperature == 0}"
+                    app:emoji="@string/emoji_hot"
+                    app:title="더위를 잘 탐" />
+
+                <com.nalc.android.nalc.view.custom.BodyTypeButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:isActivated="@{viewModel.signUpUser.temperature == 1}"
+                    app:emoji="@string/emoji_normal"
+                    app:title="보통" />
+
+                <com.nalc.android.nalc.view.custom.BodyTypeButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:isActivated="@{viewModel.signUpUser.temperature == 2}"
+                    app:emoji="@string/emoji_cold"
+                    app:title="추위를 잘 탐" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="50dp"/>
+            
+            <LinearLayout
+                android:id="@+id/ll_sweat_sigh_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.nalc.android.nalc.view.custom.BodyTypeButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:isActivated="@{viewModel.signUpUser.sweat != null &amp;&amp; viewModel.signUpUser.sweat == 0}"
+                    app:emoji="💧"
+                    app:title="땀 적음" />
+
+                <com.nalc.android.nalc.view.custom.BodyTypeButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:isActivated="@{viewModel.signUpUser.sweat == 1}"
+                    app:emoji="💦"
+                    app:title="보통" />
+
+                <com.nalc.android.nalc.view.custom.BodyTypeButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:isActivated="@{viewModel.signUpUser.sweat == 2}"
+                    app:emoji="🌊"
+                    app:title="땀 많음" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NalC</string>
+
+    <string name="emoji_hot">🥵</string>
+    <string name="emoji_normal">🙂</string>
+    <string name="emoji_cold">🥶</string>
 </resources>

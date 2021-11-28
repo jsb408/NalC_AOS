@@ -13,9 +13,19 @@ import androidx.activity.result.launch
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.paging.PagingConfig
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.firestore.paging.FirestorePagingOptions
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.nalc.android.nalc.FirestoreCollection
 import com.nalc.android.nalc.R
 import com.nalc.android.nalc.databinding.ActivityMainBinding
+import com.nalc.android.nalc.model.ReplyModel
 import com.nalc.android.nalc.model.UserModel
+import com.nalc.android.nalc.view.adapter.ReplyAdapter
 import com.nalc.android.nalc.viewmodel.MainViewModel
 import com.nalc.android.nalc.viewmodel.factory.MainViewModelFactory
 
@@ -47,6 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setView() {
         setEditText()
+        setRecyclerView()
     }
 
     // region setView
@@ -70,6 +81,31 @@ class MainActivity : AppCompatActivity() {
                 true
             }
         )
+    }
+
+    private fun setRecyclerView() {
+        val layoutManager = LinearLayoutManager(this).apply {
+            stackFromEnd = true
+            reverseLayout = true
+        }
+
+        val query = Firebase.firestore.collection(FirestoreCollection.REPLY.collectionName)
+            .orderBy("date", Query.Direction.DESCENDING)
+        val options = FirestorePagingOptions.Builder<ReplyModel>()
+            .setLifecycleOwner(this)
+            .setQuery(query, PagingConfig(30), ReplyModel::class.java)
+            .build()
+        val adapter = ReplyAdapter(options)
+        adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                super.onItemRangeInserted(positionStart, itemCount)
+                binding.rvReplyMain.scrollToPosition(0)
+            }
+        })
+
+        binding.rvReplyMain.adapter = adapter
+        binding.rvReplyMain.layoutManager = layoutManager
+        adapter.startListening()
     }
     // endregion
 }

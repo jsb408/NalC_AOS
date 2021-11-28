@@ -2,6 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="reply"
+            type="com.nalc.android.nalc.model.ReplyModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -26,6 +31,7 @@
             android:paddingHorizontal="8dp"
             android:paddingVertical="10dp"
             android:textSize="16sp"
+            android:text="@{reply.content}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageFilterView2"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
